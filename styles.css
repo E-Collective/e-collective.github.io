@@ -213,13 +213,6 @@ nav {
   font-variation-settings: "wght" 500;
   letter-spacing: 0em;
 }
-#hero p {
-  font-size: 1rem;
-  color: var(--accent-white);
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
 
 /* --- 5. CONTENT SECTIONS (Part 1 Integration) --- */
 section {
@@ -317,15 +310,12 @@ section {
   grid-template-columns: repeat(4, 1fr); /* Default to 4 columns */
   gap: 30px;
 }
-.projects-grid{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:30px;
-}
+
 .card {
   background: var(--glass-bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px 30px;
+  margin: 20px 0;
   border-radius: 12px;
   transition: all 0.4s ease;
 }
@@ -343,6 +333,11 @@ section {
   color: #fff;
   border-bottom: 1px solid var(--accent-white);
   padding-bottom: 10px;
+}
+
+.card h3 .upcoming {
+  font-size: 1.1rem;
+  font-weight: normal;
 }
 
 #projects h2 {
@@ -398,7 +393,6 @@ footer {
   text-align: center;
   color: var(--accent-white);
   font-size: 0.8rem;
-  background: #05111a;
 }
 
 footer a {
@@ -414,14 +408,14 @@ footer a:hover {
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
-  gap:24px;
+  gap: 24px;
   margin-bottom: 20px;
 }
 
 .footer-socials a {
   display: inline-flex;
   align-items: center;
-  gap:8px;
+  gap: 8px;
   text-decoration: none;
   margin: 0 10px;
   font-size: 1.2rem;
@@ -432,8 +426,84 @@ footer a:hover {
   vertical-align: middle;
 }
 
-.footer-socials a:hover{
-opacity: 0.7;
+.footer-socials a:hover {
+  opacity: 0.7;
+}
+
+/* --- COMING SOON MODAL --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--dark-glass);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  padding: 45px 35px;
+  text-align: center;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(15px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0);
+}
+
+.modal h3 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #fff;
+  border-bottom: 1px solid var(--accent-white);
+  padding-bottom: 10px;
+}
+
+.modal p {
+  color: var(--accent-white);
+  margin-bottom: 25px;
+}
+
+.modal-socials {
+  margin-bottom: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--accent-white);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.modal-close:hover {
+  opacity: 0.7;
 }
 
 /* --- Hamburger Menu --- */
@@ -479,7 +549,7 @@ opacity: 0.7;
 
 @media (max-width: 1024px) {
   /* Adjusted grid layout for the About section */
-  .content-grid {
+  .about-grid {
     grid-template-columns: repeat(2, 1fr); /* 2x2 layout on medium screens */
   }
 }
@@ -507,7 +577,7 @@ opacity: 0.7;
   }
 
   /* Adjusted grid layout for the About section */
-  .content-grid {
+  .about-grid {
     grid-template-columns: repeat(
       2,
       1fr
@@ -521,7 +591,7 @@ opacity: 0.7;
   }
 
   /* Adjusted grid layout for the About section */
-  .content-grid {
+  .about-grid {
     grid-template-columns: 1fr; /* Stacks all items vertically on very small screens */
   }
 }

@@ -197,6 +197,39 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.classList.toggle("active");
   });
 
+  // "Coming Soon" popup for the Shop and Donate nav links
+  const modal = document.getElementById("coming-soon");
+  if (modal) {
+    const closeBtn = modal.querySelector(".modal-close");
+
+    const openModal = (event) => {
+      event.preventDefault();
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    };
+
+    document
+      .querySelectorAll(
+        '.nav-links a[href="#shop"], .nav-links a[href="#donate"]',
+      )
+      .forEach((link) => link.addEventListener("click", openModal));
+
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+    });
+  }
+
   // Start typewriter animation after 1 second
   setTimeout(typeWriter, 1000);
 });
