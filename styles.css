@@ -36,13 +36,17 @@
   font-family: inherit;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Offset anchor targets for the fixed nav */
+}
+
 body {
   background-color: var(--charcoal-blue);
   color: var(--accent-white);
   font-family: var(--global-font);
   line-height: 1.7;
   overflow-x: hidden;
-  scroll-behavior: smooth;
   position: relative;
 }
 
